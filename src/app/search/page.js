@@ -9,6 +9,7 @@ export default function Home() {
     const isSearchable = !query.trim() ? false : true;
     const handleSearch = async () => {
         const data = await getData(query);
+        if (!data) return alert("tweak not found");
         setResults(data);
     }
     const handleEnter = (e) => {
