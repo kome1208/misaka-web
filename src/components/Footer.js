@@ -31,12 +31,12 @@ export default function Footer() {
                     </div>
                 </Link>
                 
-                {/* <Link href="/search">
-                    <div className="flex flex-col items-center w-24">
+                <Link href="/search">
+                    <div className="flex flex-col items-center w-24" color="#2393fc">
                         <BsSearch size={24} />
                         <small className="text-xs">Search</small>
                     </div>
-                </Link> */}
+                </Link>
                 </div>
             </div>
         </nav>
