@@ -29,9 +29,9 @@ export default async function Home({ params }) {
   if (!tweak) return notFound();
 
   return (
-    <>
-      <div className="flex justify-center items-center relative overflow-hidden">
-        <img src={tweak.banner || tweak.repository.default.HeaderImage} alt="Header" className="h-64 object-cover"/>
+    <div className="h-screen">
+      <div className="flex justify-center items-center h-1/3 relative overflow-hidden">
+        <img src={tweak.banner || tweak.repository.default.HeaderImage} alt="Header" className="h-full w-full object-cover"/>
         <div className="absolute top-0 w-full h-full flex items-center justify-center">
           <div className="absolute bottom-0 bg-gradient-to-t from-white w-full h-1/3 p-4" />
         </div>
@@ -71,8 +71,8 @@ export default async function Home({ params }) {
             <p className="text-gray-500 text-xs font-semibold">REQUIRED EXPLOITS</p>
             <h1 className="text-gray-500 text-base font-semibold">{tweak.package.compatible?.exploit?.length ? tweak.package.compatible?.exploit?.join(", ") : "-"}</h1>
           </div>
-          <div className="flex flex-col items-center px-8">
-            <Link href={`/sources/${tweak.repository.slug}`}>
+          <div>
+            <Link href={`/sources/${tweak.repository.slug}`} className="flex flex-col items-center px-8">
               <p className="text-gray-500 text-xs font-semibold">REPOSITORY</p>
               <h1 className="text-gray-500 text-base font-semibold">{tweak.repository.name}</h1>
             </Link>
@@ -92,7 +92,7 @@ export default async function Home({ params }) {
         </div>
         <p className="flex justify-end pt-4">{tweak.packageid}</p>
       </div>
-    </>
+    </div>
   )
 }
 

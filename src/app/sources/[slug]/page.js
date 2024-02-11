@@ -38,9 +38,9 @@ export default async function Home({ params }) {
     />
   )
   return (
-    <>
-      <div className="relative">
-        <img src={repo.icon} alt="Repository Icon" className="w-full"/>
+    <div className="h-screen">
+      <div className="flex items-center justify-center h-1/2 relative overflow-hidden">
+        <img src={repo.icon} alt="Repository Icon" className="h-full w-full object-cover"/>
         <div className="absolute top-0 w-full h-full flex items-center justify-center">
           <div className="absolute bottom-0 bg-gradient-to-t from-white w-full h-1/5 p-4">
             <h1 className="text-4xl font-bold text-black text-ellipsis line-clamp-2">{repo.name}</h1>
@@ -49,7 +49,7 @@ export default async function Home({ params }) {
       </div>
       <p className="text-xl font-bold text-black pt-6 px-4">{repo.description}</p>
       {list}
-    </>
+    </div>
   )
 }
 
