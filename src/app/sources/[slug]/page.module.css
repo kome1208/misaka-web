@@ -1,0 +1,37 @@
+.icon_container {
+	position: relative;
+	width: 100%;
+	height: calc(100vh / 1.75);
+}
+
+.gradient_background {
+	position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100vh / 2);
+	aspect-ratio: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 30%);
+}
+
+.icon {
+	position: absolute;
+	width: 100%;
+	max-height: calc(100vh / 2);
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.name {
+	padding: 16px;
+	font-weight: bold;
+	font-size: 44px;
+	position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.description {
+	padding: 0 16px 0 16px;
+	font-size: 20px;
+	font-weight: 600;
+}

@@ -1,61 +1,64 @@
 "use client";
-import TweakCard from "@/components/TweakCard";
-
-const { useState } = require("react");
+import { useState, useEffect } from "react";
+import styles from "./page.module.css";
+import { TweakCard } from "@/components/TweakCard";
 
 export default function Home() {
-    const [ query, setQuery ] = useState("");
-    const [ results, setResults ] = useState([]);
-    const isSearchable = !query.trim() ? false : true;
-    const handleSearch = async () => {
-        const data = await getData(query);
-        if (!data) return alert("tweak not found");
-        setResults(data);
-    }
-    const handleEnter = (e) => {
-        if (e.key === 'Enter' && isSearchable) {
-            handleSearch();
-        }
-    };
-    const list = results.map((tweak) => (
-        <TweakCard key={tweak.packageid}
-            icon={tweak.icon}
-            title={tweak.name}
-            description={tweak.description}
-            author={tweak?.author || tweak.repository.default.Author.Label}
-            version={tweak.package.version}
-            packageId={tweak.packageid}
-        />
-    ))
-    return (
-        <>
-        <h1 className="text-4xl font-bold m-4">Search</h1>
-        <div className="m-4 flex">
-            <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleEnter}
-            placeholder="Search tweaks..."
-            className="border border-gray-300 rounded-lg px-4 py-2 w-full"
-            />
-            <button
-            onClick={handleSearch}
-            disabled={!isSearchable}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg ml-2"
-            >
-            Search
-            </button>
-        </div>
-        {list}
-        </>
-      )
+	const [query, setQuery] = useState("");
+	const [results, setResults] = useState([]);
+	const [isNotFound, setIsNotFound] = useState(false);
+
+	useEffect(() => {
+		setTimeout(async () => {
+		  const tweaks = await searchTweak(query);
+			if (!tweaks.length) {
+				setResults([]);
+				setIsNotFound(true)
+			} else {
+				setResults(tweaks);
+				setIsNotFound(false);
+			};
+		}, 1000);
+	}, [query]);
+
+  return (
+    <main className={styles.main}>
+      <div className="header_view">
+        <h1>Search</h1>
+			</div>
+			<div className={styles.container}>
+				<input
+					type="text"
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+					placeholder="Search"
+					className={styles.text_input}
+				/>
+			</div>
+			{results?.length > 0 &&
+				results.map((tweak) =>
+					<TweakCard
+						icon={tweak.icon}
+						author={tweak.author}
+						description={tweak.description}
+						name={tweak.name}
+						version={tweak.package.version}
+						packageId={tweak.packageid}
+						key={tweak.packageid}
+					/>
+				)
+			}
+			{isNotFound &&
+				<p style={{
+					padding:16
+				}}>not found</p>
+			}
+    </main>
+  );
 }
 
-export async function getData(query) {
-    const api_response = await fetch(`https://misaka-search-ydkr.koyeb.app/api/v2/tweaks/search?q=${query}`);
-    const api_data = await api_response.json();
-    
-    if (!api_data.count) return false;
-    return api_data.tweaks;
+export async function searchTweak(query) {
+  const response = await fetch(`https://misaka-search-api.onrender.com/api/v2/tweaks/search?q=${query}`);
+	const data = await response.json();
+  return data.tweaks;
 }

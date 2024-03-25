@@ -1,0 +1,16 @@
+.main {
+	padding-top: 30px;
+}
+
+.container {
+	display: flex;
+}
+
+.text_input {
+	display: flex;
+	border: 0;
+	border-radius: 1rem;
+	padding: 16px;
+	margin: 16px;
+	width: 100%;
+}

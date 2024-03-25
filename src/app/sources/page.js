@@ -1,44 +1,45 @@
 import Link from "next/link";
+import styles from "./page.module.css";
 import { BsChevronRight } from "react-icons/bs";
 
 export const metadata = {
   title: "Sources | Misaka Web",
-  description: "misaka for web app",
-}
+  description: "Misaka Web Viewer",
+};
 
 export default async function Home() {
-  const repo = await getData();
+	const repos = await getData();
 
-  const list = repo
-  .sort((a, b) => a.name.localeCompare(b.name))
-  .map((repo) =>
-    <Link href={`/sources/${repo.slug}`} key={repo.slug}>
-        <div className="flex items-center w-full h-20 border-t-2 p-4">
-            <img src={repo.icon} alt="Icon" className="w-11 h-11 rounded-xl mr-4" />
-            <div className="truncate">
-                <h1 className="text-base font-semibold text-black">{repo.name}</h1>
-                <p className="text-sm text-gray-500">{repo.description}</p>
-            </div>
-            <div className="flex items-center ml-auto">
-              <p className="text-sm text-gray-500">{repo.tweakCount}</p>
-              <BsChevronRight size={15} color="#9ca3af"/>
-            </div>
-        </div>
-    </Link>
-  )
+	const repos_list = repos
+	.sort((a, b) => a.name.localeCompare(b.name))
+	.map((repo) =>
+		<Link href={`/sources/${repo.slug}`} key={repo.slug}>
+			<div className={styles.repo_container}>
+				<img src={repo.icon} alt="Icon" className={styles.icon} />
+				<div className={styles.text_container}>
+					<div className={styles.name}>{repo.name}</div>
+					<div className={styles.description}>{repo.description}</div>
+				</div>
+				<div className={styles.right_element}>
+					<div className={styles.description}>{repo.tweakCount}</div>
+					<BsChevronRight size={16} color="rgb(75,75,75)" />
+				</div>
+			</div>
+		</Link>
+	);
+
   return (
-    <>
-    <h1 className="text-4xl font-bold m-4">Sources</h1>
-    <div >
-      {list}
-    </div>
-    </>
-  )
+    <main className={styles.main}>
+      <div className="header_view">
+        <h1>Sources</h1>
+      </div>
+			{repos_list}
+    </main>
+  );
 }
 
 export async function getData() {
-  const api_response = await fetch("https://misaka-search-ydkr.koyeb.app/api/v2/repos/");
-  const api_data = await api_response.json();
-
-  return api_data.repos;
+  const response = await fetch("https://misaka-search-api.onrender.com/api/v2/repos");
+	const data = await response.json();
+	return data.repos;
 }

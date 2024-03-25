@@ -1,0 +1,36 @@
+
+.tweak_container {
+	display: flex;
+	padding: 16px;
+}
+
+.text_container {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	-webkit-line-clamp: 1;
+}
+
+.tweak_icon {
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: .75rem;
+	margin-right: 16px;
+}
+
+.tweak_name {
+	font-weight: 550;
+	font-size: 18px;
+}
+
+.tweak_description {
+	color: gray;
+	font-size: 12px;
+}
+
+.tweak_author {
+	color: gray;
+	font-size: 14px;
+}

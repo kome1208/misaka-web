@@ -1,16 +1,17 @@
 import Link from "next/link";
+import styles from "./TweakCard.module.css";
 
-export default function TweakCard({ icon, title, description, author, version, packageId }) {
-    return (
-    <Link href={"/packages/"+packageId}>
-        <div className="flex items-center w-full h-20 p-4">
-            <img src={icon} alt="Icon" className="w-14 h-14 rounded-2xl mr-4" />
-            <div className="truncate">
-                <h1 className="text-base font-semibold text-black">{title}</h1>
-                <p className="text-sm text-gray-500">{author} {version}</p>
-                <p className="text-xs text-gray-500">{description}</p>
-            </div>
-        </div>
-    </Link>
-    );
+export function TweakCard({icon, name, description, author, version, packageId}) {
+	return (
+		<Link href={`/packages/?packageId=${packageId}`}>
+			<div className={styles.tweak_container}>
+				<img src={icon} alt="TweakIcon" className={styles.tweak_icon}/>
+				<div className={styles.text_container}>
+					<div className={styles.tweak_name}>{name}</div>
+					<div className={styles.tweak_author}>{author} {version}</div>
+					<div className={styles.tweak_description}>{description}</div>
+				</div>
+			</div>
+		</Link>
+	)
 }
