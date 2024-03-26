@@ -39,7 +39,7 @@ export default async function Home() {
 }
 
 export async function getData() {
-  const response = await fetch("https://misaka-search-api.onrender.com/api/v2/repos");
+  const response = await fetch("https://cf312930.cloudfree.jp/api/v2/repos");
 	const data = await response.json();
 	return data.repos;
 }

@@ -30,7 +30,7 @@ export default async function Home() {
 
 export async function getData() {
   const response = await fetch("https://raw.githubusercontent.com/shimajiron/Misaka_Network/main/Server/News.json").then((res) => res.json());
-  const api_response = await fetch(`https://misaka-search-api.onrender.com/api/v2/tweaks/${response.NewRelease.map((tweak) => tweak.PackageID)}`).then((res) => res.json());
+  const api_response = await fetch(`https://cf312930.cloudfree.jp/api/v2/tweaks/${response.NewRelease.map((tweak) => tweak.PackageID)}`).then((res) => res.json());
 
   return {
     tweaks: api_response.tweaks,

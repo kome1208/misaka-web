@@ -41,8 +41,8 @@ export default async function Home() {
 
 export async function getFeaturedTweaks() {
   const response = await fetch("https://raw.githubusercontent.com/shimajiron/Misaka_Network/main/Server/Featured.json").then((res) => res.json());
-  const headerTweaks = await fetch(`https://misaka-search-api.onrender.com/api/v2/tweaks/${response.Header.map(((tweak) => tweak.PackageID))}`).then((res) => res.json());
-  const popularTweaks= await fetch(`https://misaka-search-api.onrender.com/api/v2/tweaks/${response.Popular.map(((tweak) => tweak.PackageID))}`).then((res) => res.json());
+  const headerTweaks = await fetch(`https://cf312930.cloudfree.jp/api/v2/tweaks/${response.Header.map(((tweak) => tweak.PackageID))}`).then((res) => res.json());
+  const popularTweaks= await fetch(`https://cf312930.cloudfree.jp/api/v2/tweaks/${response.Popular.map(((tweak) => tweak.PackageID))}`).then((res) => res.json());
   return {
     headerTweaks,
     popularTweaks
