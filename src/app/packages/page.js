@@ -80,7 +80,7 @@ export default async function Home({ searchParams }) {
 }
 
 export async function getData(packageId) {
-  const response = await fetch(`https://cf312930.cloudfree.jp/api/v2/tweaks/${packageId}`);
+  const response = await fetch(`https://kome1.xyz/api/v2/tweaks/${packageId}`);
 	const data = await response.json();
   if (!data.count) {
 		return false
