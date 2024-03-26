@@ -66,7 +66,7 @@ export default function Home() {
 }
 
 export async function searchTweak(query) {
-  const response = await fetch(`https://kome1.xyz/api/v2/tweaks/search?q=${query}`);
+  const response = await fetch(`https://api.kome1.xyz/v2/tweaks/search?q=${query}`);
 	const data = await response.json();
   return data.tweaks;
 }
