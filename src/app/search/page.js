@@ -7,19 +7,27 @@ export default function Home() {
 	const [query, setQuery] = useState("");
 	const [results, setResults] = useState([]);
 	const [isNotFound, setIsNotFound] = useState(false);
+	const [timerId, setTimerId] = useState(null);
 
-	useEffect(() => {
-		setTimeout(async () => {
-		  const tweaks = await searchTweak(query);
-			if (!tweaks.length) {
+	const handleTextInput = (e) => {
+    setQuery(e.target.value);
+		if (e.target.value.length < 2) {
+			return setResults([]);
+		};
+		if (timerId) {
+			clearTimeout(timerId)
+		}
+    setTimerId(setTimeout(async () => {
+      const tweaks = await searchTweak(e.target.value);
+			if (!tweaks?.length) {
 				setResults([]);
 				setIsNotFound(true)
 			} else {
 				setResults(tweaks);
 				setIsNotFound(false);
 			};
-		}, 1000);
-	}, [query]);
+    }, 1000));
+  };
 
   return (
     <main className={styles.main}>
@@ -30,7 +38,7 @@ export default function Home() {
 				<input
 					type="text"
 					value={query}
-					onChange={(e) => setQuery(e.target.value)}
+					onChange={handleTextInput}
 					placeholder="Search"
 					className={styles.text_input}
 				/>
