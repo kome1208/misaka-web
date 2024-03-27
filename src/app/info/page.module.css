@@ -1,0 +1,32 @@
+.main {
+	padding-top: 30px;
+}
+
+.author_view {
+	flex: 1;
+	display: flex;
+	padding: 0 16px 16px 16px;
+	align-items: center;
+}
+
+.bsicon {
+	width: 4rem;
+	height: 4rem;
+	margin-right: 16px;
+}
+
+.icon {
+	width: 4rem;
+	height: 4rem;
+	margin-right: 16px;
+	border-radius: 2rem;
+}
+
+.name {
+	font-weight: 550;
+	font-size: 24px;
+}
+
+.description {
+	color: gray;
+}

@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import TweakHeader from '@/components/TweakHeader';
 import TweakContainer from '@/components/TweakContainer';
+import Link from "next/link";
 
 export default async function Home() {
   const { headerTweaks, popularTweaks } = await getFeaturedTweaks();
@@ -35,6 +36,10 @@ export default async function Home() {
         <h1>Popular</h1>
       </div>
       {populars}
+      <div className={styles.bottom_text}>
+        <p>misaka web</p>
+        <Link className={styles.website_info} href="/info">website info</Link>
+      </div>
     </main>
   );
 }

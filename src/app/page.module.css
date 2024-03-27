@@ -8,6 +8,14 @@
   padding-left: 16px;
 }
 
+.bottom_text {
+  text-align: center;
+}
+
+.website_info {
+  color: #007bff;
+}
+
 .tweak_header {
   width: 18rem;
   height: 11rem;
